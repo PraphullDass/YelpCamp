@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>YelpCamp</title>
+
+		<!-- Adding custon style sheets -->
+		<link rel="stylesheet" type="text/css" href="/static/stylesheets/main.css">
+
+		<!-- Adding bootstrap and JQuery -->
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<!-- Adding Navbar -->
+		<nav class="navbar navbar-light bg-light navbar-expand-lg">
+			<a class="navbar-brand" href="/">YelpCamp</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#toggleContent">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="toggleContent">
+				<ul class="navbar-nav ml-auto">
+					<% if(!currentUser) {%>
+						<li class="nav-item">
+							<a class="nav-link" href="/register">Sign Up</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/login">Login</a>
+						</li>
+					<% } else { %>
+						<li class="nav-item">
+							<span class="navbar-text">Signed In as <%= currentUser.username %></span>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/logout">Logout</a>
+						</li>
+					<% } %>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- adding flash messages -->
+		<% if(error && error.length > 0) { %>
+			<div class="alert alert-danger container mt-4">
+				<%=error%>
+			</div>
+		<% } else if(success && success.length > 0) { %>
+			<div class="alert alert-success container mt-4">
+				<%=success%>
+			</div>
+		<% } %>
